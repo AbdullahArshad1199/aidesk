@@ -37,7 +37,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Python / Backend
+# Python / Backend (keep source files, ignore build artifacts)
 __pycache__/
 *.py[cod]
 *$py.class
@@ -47,5 +47,6 @@ env/
 venv/
 ENV/
 .venv
-/backend/
+*.pyc
+.pytest_cache/
 
