@@ -14,10 +14,13 @@ export default function BackendStatus({ apiUrl }: BackendStatusProps) {
     const checkBackend = async () => {
       try {
         setIsChecking(true)
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), 3000)
         const response = await fetch(`${apiUrl}/health`, {
           cache: 'no-store',
-          signal: AbortSignal.timeout(3000)
+          signal: controller.signal
         })
+        clearTimeout(timeoutId)
         setIsConnected(response.ok)
       } catch {
         setIsConnected(false)

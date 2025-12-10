@@ -14,10 +14,13 @@ export default async function Home() {
   try {
     // First check if backend is reachable
     try {
+      const controller = new AbortController()
+      const timeoutId = setTimeout(() => controller.abort(), 5000)
       const healthCheck = await fetch(`${apiUrl}/health`, { 
         cache: 'no-store',
-        signal: AbortSignal.timeout(5000) // 5 second timeout
+        signal: controller.signal
       })
+      clearTimeout(timeoutId)
       backendConnected = healthCheck.ok
     } catch {
       backendConnected = false
@@ -25,19 +28,19 @@ export default async function Home() {
 
     if (backendConnected) {
       // Fetch data with better error handling
+      const createFetchWithTimeout = (url: string, timeout: number = 10000) => {
+        const controller = new AbortController()
+        const timeoutId = setTimeout(() => controller.abort(), timeout)
+        return fetch(url, { 
+          next: { revalidate: 300 },
+          signal: controller.signal
+        }).finally(() => clearTimeout(timeoutId))
+      }
+
       const [trendingRes, importantRes, allRes] = await Promise.allSettled([
-        fetch(`${apiUrl}/news/trending`, { 
-          next: { revalidate: 300 },
-          signal: AbortSignal.timeout(10000) // 10 second timeout
-        }),
-        fetch(`${apiUrl}/news/important`, { 
-          next: { revalidate: 300 },
-          signal: AbortSignal.timeout(10000)
-        }),
-        fetch(`${apiUrl}/news/all`, { 
-          next: { revalidate: 300 },
-          signal: AbortSignal.timeout(10000)
-        }),
+        createFetchWithTimeout(`${apiUrl}/news/trending`),
+        createFetchWithTimeout(`${apiUrl}/news/important`),
+        createFetchWithTimeout(`${apiUrl}/news/all`),
       ])
 
       if (trendingRes.status === 'fulfilled' && trendingRes.value.ok) {
