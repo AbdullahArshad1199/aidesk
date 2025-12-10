@@ -52,9 +52,10 @@ python -m uvicorn main:app --reload --port 8000
 
 ## 🎨 Frontend Setup (Next.js)
 
-### Step 1: Navigate to frontend directory
+### Step 1: Navigate to project root
 ```bash
-cd frontend
+# If you're in backend directory, go back
+cd ..
 ```
 
 ### Step 2: Install dependencies
@@ -63,7 +64,7 @@ npm install
 ```
 
 ### Step 3: (Optional) Set environment variable
-Create `.env.local` file in the frontend directory:
+Create `.env.local` file in the root directory:
 ```bash
 # Windows PowerShell
 New-Item -Path .env.local -ItemType File
@@ -92,7 +93,6 @@ python -m uvicorn main:app --reload --port 8000
 
 ### Terminal 2 - Frontend:
 ```bash
-cd frontend
 npm install
 npm run dev
 ```
@@ -184,10 +184,9 @@ aidesk/
 ├── backend/          # FastAPI backend
 │   ├── main.py      # Start here
 │   └── requirements.txt
-└── frontend/        # Next.js frontend
-    ├── app/         # Next.js app directory
-    │   └── page.tsx # Home page
-    └── package.json # Frontend dependencies
+├── app/              # Next.js frontend
+│   └── page.tsx     # Home page
+└── package.json     # Frontend dependencies
 ```
 
 ---
