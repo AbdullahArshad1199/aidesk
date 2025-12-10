@@ -69,52 +69,58 @@ export default function NewsCard({ article, variant = 'default' }: NewsCardProps
   return (
     <Link 
       href={`/news/${encodeURIComponent(article.link)}`}
-      className={`block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group max-w-sm mx-auto ${
+      className={`block bg-white rounded-2xl shadow-soft hover:shadow-professional transition-all duration-500 overflow-hidden group max-w-sm mx-auto transform hover:-translate-y-2 ${
         isLarge ? 'h-full' : ''
       }`}
     >
-      <div className={`relative ${isLarge ? 'h-64' : 'h-40'} w-full overflow-hidden bg-gradient-to-br from-[#0A1A3A] to-[#1F3F7F]`}>
+      <div className={`relative ${isLarge ? 'h-64' : 'h-48'} w-full overflow-hidden bg-gradient-to-br from-[#0A1A3A] via-[#112B54] to-[#1F3F7F]`}>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
         <Image
           src={imageUrl}
           alt={article.title}
           fill
-          className="object-cover group-hover:scale-110 transition-transform duration-300"
+          className="object-cover group-hover:scale-110 transition-transform duration-700"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {(article.is_trending || article.is_important) && (
-          <div className="absolute top-4 right-4 z-10">
+          <div className="absolute top-4 right-4 z-20 flex gap-2">
             {article.is_trending && (
-              <span className="bg-[#4A6FF3] text-white px-3 py-1 rounded-full text-xs font-semibold">
+              <span className="bg-gradient-to-r from-[#4A6FF3] to-[#1F3F7F] text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
                 🔥 Trending
               </span>
             )}
             {article.is_important && (
-              <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-semibold ml-2">
+              <span className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
                 ⭐ Important
               </span>
             )}
           </div>
         )}
+        <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+          <span className={`${isLarge ? 'text-sm' : 'text-xs'} font-semibold text-white bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full inline-block`}>
+            {article.source}
+          </span>
+        </div>
       </div>
       
-      <div className={`${isLarge ? 'p-6 flex flex-col h-full' : 'p-4'} ${isLarge ? '' : ''}`}>
-        <div className="flex items-center justify-between mb-2">
-          <span className={`${isLarge ? 'text-sm' : 'text-xs'} font-semibold text-[#4A6FF3]`}>{article.source}</span>
-          <span className="text-xs text-gray-500">{formatDate(article.published_at)}</span>
+      <div className={`${isLarge ? 'p-6 flex flex-col h-full' : 'p-5'} bg-white`}>
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-xs text-gray-500 font-medium">{formatDate(article.published_at)}</span>
         </div>
         
-        <h3 className={`font-bold text-[#0A1A3A] mb-2 group-hover:text-[#4A6FF3] transition ${
-          isLarge ? 'text-2xl' : 'text-base'
-        } line-clamp-2`}>
+        <h3 className={`font-bold text-[#0A1A3A] mb-3 group-hover:text-[#4A6FF3] transition-colors duration-300 ${
+          isLarge ? 'text-xl' : 'text-base'
+        } line-clamp-2 leading-tight`}>
           {article.title}
         </h3>
         
-        <p className={`text-gray-600 ${isLarge ? 'text-base mb-4 flex-grow' : 'text-xs'} line-clamp-2`}>
+        <p className={`text-gray-600 ${isLarge ? 'text-sm mb-4 flex-grow leading-relaxed' : 'text-xs leading-relaxed'} line-clamp-2`}>
           {article.description}
         </p>
         
-        <div className={`${isLarge ? 'mt-4' : 'mt-2'} text-[#4A6FF3] font-semibold ${isLarge ? 'text-sm' : 'text-xs'} group-hover:underline`}>
-          Read more →
+        <div className={`${isLarge ? 'mt-auto pt-4' : 'mt-3'} flex items-center text-[#4A6FF3] font-semibold ${isLarge ? 'text-sm' : 'text-xs'} group-hover:gap-2 transition-all duration-300`}>
+          <span>Read more</span>
+          <span className="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
         </div>
       </div>
     </Link>

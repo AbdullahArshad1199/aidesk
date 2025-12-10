@@ -76,18 +76,27 @@ export default async function Home() {
       )}
 
       {/* Hero Section - Always visible */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-[#0A1A3A] mb-4">
+      <div className="text-center mb-16 animate-fadeIn">
+        <div className="inline-block mb-6">
+          <span className="text-sm font-semibold text-[#4A6FF3] bg-[#EEF2FF] px-4 py-2 rounded-full">
+            Latest AI Intelligence
+          </span>
+        </div>
+        <h1 className="text-6xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-[#0A1A3A] via-[#1F3F7F] to-[#4A6FF3] bg-clip-text text-transparent leading-tight">
           AI News Hub
         </h1>
-        <p className="text-xl text-[#1F3F7F] max-w-2xl mx-auto">
-          Stay updated with the latest AI news, breakthroughs, and research from top sources
+        <p className="text-xl md:text-2xl text-[#1F3F7F] max-w-3xl mx-auto leading-relaxed font-light">
+          Stay updated with the latest AI news, breakthroughs, and research from top sources around the world
         </p>
       </div>
 
       {/* Trending Slider */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-[#0A1A3A] mb-6">🔥 Trending Now</h2>
+      <section className="mb-20 animate-slideIn">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="h-1 w-12 bg-gradient-to-r from-[#4A6FF3] to-[#1F3F7F] rounded-full"></div>
+          <h2 className="text-4xl font-bold text-[#0A1A3A]">🔥 Trending Now</h2>
+          <div className="flex-1 h-1 bg-gradient-to-r from-[#4A6FF3] to-transparent rounded-full"></div>
+        </div>
         {trending.articles && trending.articles.length > 0 ? (
           <TrendingSlider articles={trending.articles.slice(0, 15)} />
         ) : (
@@ -105,8 +114,12 @@ export default async function Home() {
       </section>
 
       {/* Important News Grid */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-[#0A1A3A] mb-6">⭐ Important News</h2>
+      <section className="mb-20 animate-slideIn">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="h-1 w-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full"></div>
+          <h2 className="text-4xl font-bold text-[#0A1A3A]">⭐ Important News</h2>
+          <div className="flex-1 h-1 bg-gradient-to-r from-yellow-500 to-transparent rounded-full"></div>
+        </div>
         {important.articles && important.articles.length > 0 ? (
           <NewsGrid articles={important.articles.slice(0, 6)} />
         ) : (
@@ -121,8 +134,12 @@ export default async function Home() {
       </section>
 
       {/* All News List */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold text-[#0A1A3A] mb-6">📰 All News</h2>
+      <section className="mb-20 animate-slideIn">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="h-1 w-12 bg-gradient-to-r from-[#4A6FF3] to-[#1F3F7F] rounded-full"></div>
+          <h2 className="text-4xl font-bold text-[#0A1A3A]">📰 All News</h2>
+          <div className="flex-1 h-1 bg-gradient-to-r from-[#4A6FF3] to-transparent rounded-full"></div>
+        </div>
         {all.articles && all.articles.length > 0 ? (
           <NewsList articles={all.articles} />
         ) : (
