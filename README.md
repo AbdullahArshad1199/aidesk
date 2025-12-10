@@ -29,7 +29,26 @@ A complete full-stack application for aggregating and displaying AI-related news
 
 ## 🛠️ Setup
 
-### Backend Setup
+### Quick Start
+
+**Terminal 1 - Backend:**
+```bash
+cd backend
+pip install -r requirements.txt
+python -m uvicorn main:app --reload --port 8000
+```
+
+**Terminal 2 - Frontend:**
+```bash
+npm install
+npm run dev
+```
+
+Then open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Detailed Setup
+
+#### Backend Setup
 
 1. Navigate to backend directory:
 ```bash
@@ -50,10 +69,13 @@ YOUTUBE_API_KEY=your_key
 
 4. Run the FastAPI server:
 ```bash
-uvicorn main:app --reload --port 8000
+python -m uvicorn main:app --reload --port 8000
 ```
 
-### Frontend Setup
+**Backend runs on:** `http://localhost:8000`  
+**API Docs:** `http://localhost:8000/docs`
+
+#### Frontend Setup
 
 1. Install dependencies:
 ```bash
@@ -72,6 +94,8 @@ npm run dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+For more detailed setup instructions, see [SETUP.md](./SETUP.md)
 
 ## 📡 API Endpoints
 
