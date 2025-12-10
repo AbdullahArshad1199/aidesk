@@ -31,6 +31,23 @@ A complete full-stack application for aggregating and displaying AI-related news
 
 ### Quick Start
 
+#### Option 1: Automated Start (Recommended)
+
+**Windows:**
+```bash
+# Double-click start.bat or run:
+start.bat
+```
+
+**PowerShell:**
+```powershell
+.\start.ps1
+```
+
+This will start both backend and frontend servers automatically.
+
+#### Option 2: Manual Start
+
 **Terminal 1 - Backend:**
 ```bash
 cd backend
